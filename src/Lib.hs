@@ -43,5 +43,6 @@ globMatching pat = let pat' = if isRelative pat
           matches' <- filterM doesDirectoryExist matches
           results <- mapM (\dir -> allMatches ps ms dir) matches'
           return (concat results)
+        allMatches [] [] bs = return [bs]
 
         isDirectory = isPathSeparator . last
