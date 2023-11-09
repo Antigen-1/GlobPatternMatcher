@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 
 import Test.QuickCheck.All
-import GlobalRegex
+import GlobRegex
 
 prop_globmatcher1 cs =
   case globMatcher "[!a-zA-Z0-9]" cs of
