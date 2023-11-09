@@ -36,7 +36,8 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      QuickCheck >=2.14
+    , base >=4.7 && <5
     , directory >=1.3
     , filepath >=1.4
     , regex >=1.1
@@ -53,6 +54,7 @@ executable GlobPatternMatcher-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       GlobPatternMatcher
+    , QuickCheck >=2.14
     , base >=4.7 && <5
     , directory >=1.3
     , filepath >=1.4
@@ -71,6 +73,7 @@ test-suite GlobPatternMatcher-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       GlobPatternMatcher
+    , QuickCheck >=2.14
     , base >=4.7 && <5
     , directory >=1.3
     , filepath >=1.4
