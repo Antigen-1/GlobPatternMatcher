@@ -3,7 +3,7 @@
 module Lib (globMatching,PatternException) where
 
 import PathElem (makeMatcherList)
-import System.FilePath ((</>),isPathSeparator,splitPath)
+import System.FilePath ((</>),isPathSeparator,splitPath,isRelative)
 import System.Directory (doesDirectoryExist,getCurrentDirectory,getDirectoryContents)
 import Control.Exception (throw,Exception)
 import Control.Monad (filterM)
@@ -28,9 +28,14 @@ listMatches dirName mat = do
     return (filter (match mat) names)
 
 globMatching :: String -> IO [String]
-globMatching pat = let ps = splitPath pat
-                   in  let ms = makeMatcherList ps
-                       in allMatches ps ms ""
+globMatching pat = let pat' = if isRelative pat
+                              then "." </> pat
+                              else pat
+                       -- The prefix is always determined and removed from the list.
+                       -- Then it is used as the original directory path.
+                       (dr:ps) = splitPath pat'
+                       ms = makeMatcherList ps
+                   in allMatches ps ms dr
   where allMatches (p:[]) (m:[]) bs = do
           matches <- listMatches bs m
           matches' <- if isDirectory p

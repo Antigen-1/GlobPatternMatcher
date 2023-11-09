@@ -11,7 +11,9 @@ isPattern = any (`elem` "[*?")
 makeMatcherList :: [String] -> [String -> Either String Bool]
 makeMatcherList pl = map maybeCompile pl
   where maybeCompile e = let d = dropTrailingPathSeparator e
-                         in if isPattern d
-                            then globMatcher d
-                            else exactMatcher d
+                         in (if isPattern d
+                             then globMatcher d
+                             else exactMatcher d)
+                            .
+                            dropTrailingPathSeparator
         exactMatcher pat str = Right $ pat == str
