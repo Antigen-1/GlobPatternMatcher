@@ -6,12 +6,12 @@ cabal-version: 2.2
 
 name:           GlobPatternMatcher
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/GlobPatternMatcher#readme>
-homepage:       https://github.com/githubuser/GlobPatternMatcher#readme
-bug-reports:    https://github.com/githubuser/GlobPatternMatcher/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2023 Author name here
+description:    Unix-like glob pattern matcher
+homepage:       https://github.com/Antigen-1/GlobPatternMatcher#readme
+bug-reports:    https://github.com/Antigen-1/GlobPatternMatcher/issues
+author:         ZhangHao
+maintainer:     zhanghao@antigen.top
+copyright:      2023 ZhangHao
 license:        BSD-3-Clause
 license-file:   LICENSE
 build-type:     Simple
@@ -21,11 +21,13 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/GlobPatternMatcher
+  location: https://github.com/Antigen-1/GlobPatternMatcher
 
 library
   exposed-modules:
+      GlobRegex
       Lib
+      PathElem
   other-modules:
       Paths_GlobPatternMatcher
   autogen-modules:
@@ -35,6 +37,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , regex ==1.1
   default-language: Haskell2010
 
 executable GlobPatternMatcher-exe
@@ -49,6 +52,7 @@ executable GlobPatternMatcher-exe
   build-depends:
       GlobPatternMatcher
     , base >=4.7 && <5
+    , regex ==1.1
   default-language: Haskell2010
 
 test-suite GlobPatternMatcher-test
@@ -64,4 +68,5 @@ test-suite GlobPatternMatcher-test
   build-depends:
       GlobPatternMatcher
     , base >=4.7 && <5
+    , regex ==1.1
   default-language: Haskell2010
