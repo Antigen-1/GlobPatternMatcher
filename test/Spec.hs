@@ -21,8 +21,7 @@ help_globmatcher3 (cs) =
   case globMatcher "?" cs of
     (Right b) -> b
 prop_globmatcher3 :: [Char] -> Bool
-prop_globmatcher3 [] = not $ help_globmatcher3 []
-prop_globmatcher3 (c:[]) = help_globmatcher3 [c]
+prop_globmatcher3 ([c]) = help_globmatcher3 [c]
 prop_globmatcher3 cs = not $ help_globmatcher3 cs
 
 return []

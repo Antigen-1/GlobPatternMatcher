@@ -2,7 +2,7 @@
 
 module GlobRegex (globMatcher) where
 
-import Text.RE.TDFA.String (compileRegex,(=~))
+import Text.RE.TDFA.String (compileRegexWith,SimpleREOptions(..),(=~))
 
 whenRight :: (a -> b) -> (Either c a) -> (Either c b)
 whenRight _ (Left e) = Left e
@@ -27,7 +27,7 @@ globToRegex str = whenRight (\s -> '^' : s ++ "$") (globToRegex' str)
         charClass []       = Left "unterminated character class"
 
 globMatcher :: String -> String -> Either String Bool
-globMatcher pat str = case whenRight compileRegex (globToRegex pat) of
+globMatcher pat str = case whenRight (compileRegexWith BlockSensitive) (globToRegex pat) of
                         (Right (Just re)) -> Right $ str =~ re
                         (Left s) -> Left s
                         _ -> Left "evalme_CPL_01"
